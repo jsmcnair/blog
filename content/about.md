@@ -3,4 +3,8 @@ title: About
 type: about
 ---
 
-This is the about page.
+# About
+
+## About Me
+
+## About this blog
