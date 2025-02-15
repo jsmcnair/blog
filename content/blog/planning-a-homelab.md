@@ -32,6 +32,10 @@ point, based on my initial research of what makes sense for this particular setu
 
 ![Homelab architecture](homelab-architecture.png)
 
+{{< callout type="info" >}}
+The code for this setup can be found in my [homelab repository](https://github.com/jsmcnair/homelab)
+{{< /callout >}}
+
 ## Hardware
 
 Whilst most of what I want to do can probably be done on a single machine, the production system needs to be running all the time so I will need some dedicated hardware. It's not business critical, but I will treat it as such in terms of design and operation, for academic purposes.
