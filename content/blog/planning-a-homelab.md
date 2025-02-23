@@ -1,6 +1,7 @@
 ---
 title: Planning a Homelab
 description: Planning a homelab for some new home projects and to explore new technologies.
+tags: homelab, kubernetes, talos, kubevirt, cilium, tailscale, cloudflare, minio, jucefs, opentelemetry, grafana, velero, clusterapi, argocd
 ---
 
 ## Preamble
@@ -76,15 +77,11 @@ Normally I would use the cloud provider's load balancer integration with a few a
 
 When working with cloud providers I'm used to storage backed by the provider, made available to services via CSI and  PersistentVolumeClaims. Since I'm providing the infrastructure myself I will need services at the infrastructure layer to fill this gap.
 
-I want to pool the available storage on the hardware, with replication enabled so that it is resilient to failure (or me breaking sh*t). A lot of the services I've deployed also make use of object storage too. I did look into Rook/Ceph but the architecture is quite complex and I would have to wrangle with resource tuning quite a bit to get it working in a minimal environment. Instead I'm giving a nod to JuceFS, backed by MiniIO. This gives me object storage for the truly cloud-native service, and PersistentVolumes for the rest. Since JuceFS supports read/write from mutliple pods I can use it for shared storage between pods that need it.
+I want to pool the available storage on the hardware, with replication enabled so that it is resilient to failure (or me breaking sh*t). A lot of the services I've deployed also make use of object storage too. I did look into Rook/Ceph but the architecture is quite complex and I would have to wrangle with resource tuning quite a bit to get it working in a minimal environment. Instead I'm giving a nod to JuceFS, backed by MiniIO. This gives me object storage for the truly cloud-native service, and PersistentVolumes for the rest. Since JuceFS supports read/write from mutliple pods I can also use it for shared storage between pods that need it.
 
-## Security
+## Backups
 
-It's not really it's own subject. You have to think about security in all aspects of a system. Breaking it out into it's own section gives me a chance to cover some decisions I've made that I didn't cover elsewhere.
-
-# Backups
-
-In cluster I use Velero to back up resources and persistent volumes. Resource backups are not technically required since the GitOps approach defines all configuration needed to deploy applications. I keep the resources as anyway because it can simplify restores and is just an extra layer of protection.
+In cluster I use Velero to back up resources and persistent volumes. Resource backups are not technically required since the GitOps approach defines all configuration needed to deploy applications repeatably. I keep the resources as anyway because it can simplify restores and is just an extra layer of protection.
 
 The persistent volume backups are great for point-in-time snapshot restores, but in this setup they are not adeqate because the storage and compute are all integrated. The storage at the infrastructure layer needs its own backup,  somewhere off-site. For that I will use a cloud provider's object storage service.
 
@@ -92,5 +89,10 @@ The persistent volume backups are great for point-in-time snapshot restores, but
 In a future post I plan to cover the development tooling that will form the GitOps process for managing this setup. All configuration will be avalable in a public repository, with the exception of any secrets or personally identifiable information.
 {{< /callout >}}
 
-# Management
+## Management
+
+As far as possible, I want everything to be managed in code. This gives me a mostly self-documenting environment that is repeatable, testable and fully automated. I'll add these capabilities as I go along, but to start with I will need ArgoCD for the GitOps approach to deployment.
+
+I've not used ClusterAPI before so would like to give it a try. It may be possible for me to avoid terraform completely in this environment. Any infrastructure I need for clusters can be defined via ClusterAPI, and if I need to create other infrastructure for application dependencies I can use Crossplane or a custom operator.
+
 
