@@ -53,3 +53,6 @@ params:
   editURL:
     enable: false
     base: "https://github.com/jsmcnair/blog/edit/main/content"
+  
+  page:
+    width: wide
