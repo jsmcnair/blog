@@ -41,9 +41,9 @@ The code for this setup can be found in my [homelab repository](https://github.c
 
 Whilst most of what I want to do can probably be done on a single machine, the production system needs to be running all the time so I will need some dedicated hardware. It's not business critical, but I will treat it as such in terms of design and operation, for academic purposes.
 
-In a typical production environment there would normally be multiple availability zones designed into the system at the appropriate level for the environment, and services would be designed to be resilient to failure. For obvious reasons I can't replicate this environment at home, but I can simulate it to some extent.
+In a typical production environment there would normally be redundancy mechanisms such as rack, zone or region, designed into the system at the appropriate level for the workload. Services would be distributed across these zones to improve availability. For obvious reasons I can't replicate this environment at home, but I can build environments simulate it.
 
-What I want to do is have an infrastructure layer that essentially gives me a chunk of compute power that I can deploy  clusters onto. Using the plethora of tools available to me I can simulate production environments with conditions such  as geographic distribution, and start to inject faults to see how highly available services cope with them.
+This design includes an infrastructure layer that provides compute resources that I can deploy virtual clusters onto, enabling me to experiment with different configurations, emerging tools and services, and create development environments. theough the ise of kubevirt I can create these clusters in isolated machines, as well deploy any more traditional services (e.g. HomeAssistant) that srent really ready for containerised environments.
 
 For this hardware I have the following requirements:
 
@@ -52,7 +52,7 @@ For this hardware I have the following requirements:
 * **Scalable** - If I need more compute power I should be able to easily add more.
 * **Virtualisation** - I want to be able to run multiple VMs on the hardware.
 
-I've aquired a trio of HP EliteDesk 800 G4s with 16GB RAM and 256GB, which stack quite neatly on a desk. I can expand them with more storage and memory, or just buy some more to grow the cluster size.
+I've aquired a trio of HP EliteDesk 800 G4s with 16GB RAM and 256GB, which stack quite neatly on a desk. I can expand them with more storage and memory, or just buy more units to grow the base cluster size.
 
 ## Clusters
 
@@ -62,7 +62,7 @@ There needs to be a production cluster that is always running. This will be runn
 
 Lastly, I need to be able to create any number of experimental clusters for various purposes. These can be ephemeral in nature, but crucially they need to not impact the production cluster. I plan to use QoS to ensure that the production cluster is guaranteed resource and the experimental clusters are the first to be evicted.
 
-Having the abiliy to create multiple clusters allows me to:
+Having the ability to create multiple clusters allows me to:
 * optimise the use of available hardware,
 * create development versions of the production cluster to test changes before deploying them,
 * experiment with clusters in a way that might impact services running on them, without affecting the dependency services and infrastructure.
