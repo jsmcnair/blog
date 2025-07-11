@@ -41,7 +41,7 @@ The code for this setup can be found in my [homelab repository](https://github.c
 
 Whilst most of what I want to do can probably be done on a single machine, the production system needs to be running all the time so I will need some dedicated hardware. It's not business critical, but I will treat it as such in terms of design and operation, for academic purposes.
 
-In a typical production environment there would normally be redundancy mechanisms -- such as rack, zone or region -- designed into the system at the appropriate level for the workload. Services would be distributed across these zones to improve availability. For obvious reasons I can't replicate this environment at home, but I can build environments simulate it.
+In a typical production environment there are redundancy mechanisms -- such as rack, zone or region -- designed into the system at the appropriate level for the workload. Service are distributed across these zones to improve availability. For obvious reasons I can't replicate this environment at home, but I can build environments simulate it.
 
 This design includes an infrastructure layer that provides compute resources that I can deploy virtual clusters onto, enabling me to experiment with different configurations, emerging tools and services, and create development environments. theough the ise of kubevirt I can create these clusters in isolated machines, as well deploy any more traditional services (e.g. HomeAssistant) that srent really ready for containerised environments.
 
