@@ -1,3 +1,8 @@
+---
+title: Assessing storage options for small Kubernetes clusters
+draft: true
+---
+
 Within the specific context of deploying on a cluster at home and the following ideals/requirements:
 
 * Simple deployment - not too many components to deploy/manage
