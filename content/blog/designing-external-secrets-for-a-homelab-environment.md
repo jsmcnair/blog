@@ -1,3 +1,8 @@
+---
+title: Designing external secrets for homelab clusters
+draft: true
+---
+
 # Considerations
 
 - Needs to keep secrets secure, including away from the repository.
