@@ -1,6 +1,7 @@
 ---
 title: Assessing storage options for small Kubernetes clusters
 draft: true
+breadcrumbs: false
 ---
 
 Within the specific context of deploying on a cluster at home and the following ideals/requirements:

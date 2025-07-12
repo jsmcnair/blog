@@ -1,6 +1,7 @@
 ---
 title: Designing external secrets for homelab clusters
 draft: true
+breadcrumbs: false
 ---
 
 # Considerations

@@ -1,6 +1,7 @@
 ---
 title: Home-lab proof of concept
 description: Exploring the tools for my home lab to get familiar with them and make sure I'm happy with the plan.
+breadcrumbs: false
 ---
 
 In a [previous post](../planning-a-homelab) I described the design of my home lab that I'm planning to build. Today, I will be exploring the tools a little more to get familiar with them and make sure I'm happy with the plan. As this is still exploratory I'll be working imperatively with the `clusterapi` and `talosctl` tools, rather than starting to work on declarative config.

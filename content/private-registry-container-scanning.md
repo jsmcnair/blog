@@ -4,6 +4,7 @@ summary: Using a private registry as a mirror for container images to enable vul
 description: Exploring the Zot private registry as a mirror for container images to enable vulnerability scanning with its built-in support for Trivy.
 draft: true
 todo: I've not completed this post because I moved onto a different approach, but the documentation of how to set it up is useful and there may come a time when it makes sense to use this approach.
+breadcrumbs: false
 ---
 
 ## Preamble

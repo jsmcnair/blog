@@ -1,6 +1,7 @@
 ---
 title: Investigating Talos Docker cluster creation error
 description: Investigating a failed cluster creation with Talos linux, which was caused by a missing kernel module.
+breadcrumbs: false
 ---
 
 My first experience of using Talos linux wasn't the smoothest, unfortunately. Not only did I find some aspects of the 

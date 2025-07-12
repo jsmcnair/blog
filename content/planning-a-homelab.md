@@ -2,6 +2,7 @@
 title: Planning a Homelab
 description: Planning a homelab for some new home projects and to explore new technologies.
 tags: homelab, kubernetes, k3s, kubevirt, cilium, tailscale, cloudflare, minio, jucefs, opentelemetry, grafana, velero, clusterapi, argocd
+breadcrumbs: false
 ---
 
 ## Preamble
