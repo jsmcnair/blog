@@ -1,8 +1,6 @@
 ---
-title: My Site
+title: 
 toc: true
+cascade:
+  type: blog
 ---
-
-{{< cards >}}
-  {{< card link="blog" title="Blog" icon="user" >}}
-{{< /cards >}}

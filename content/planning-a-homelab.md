@@ -6,21 +6,14 @@ tags: homelab, kubernetes, k3s, kubevirt, cilium, tailscale, cloudflare, minio, 
 
 ## Preamble
 
-Home labs are quite common among tech people but I've never really felt the need until recently. As an engineer working
-on cloud infrastructure, the cloud has been my playground. In work I have quite a lot of freedom to explore and experiment with new technologies.
+As an engineer working on cloud infrastructure, the cloud has been my playground. In work I have quite a lot of freedom to explore and experiment with new technologies, but the technology has stabilised and I'm finding I still want to explore new tools, technologies and ways of working.
 
-I've got a new solar installation coming up and there are some automation activities that I'd like explore using 
-[HomeAssistant](https://www.home-assistant.io/). Additionally, it would be nice to have somewhere to explore new 
-technologies that don't make sense in my work environment.
-
-Recently I skimmed a YouTube video that suggested a home lab being a great way of showcasing your skills to potential
-employers, and a decent portfolio of work is definitely something I'm lacking.
+The cloud is great but it can be expensive for small requirements. There are a lot of free resources available but these vary by provider and the Kubernetes offerings can be limited. With the envinronment I'm planning to build there is an up-front cost for hardware procurement, but the design allows me to create a handful small virtual clusters 
+, which would otherwise be cost-prohibitive with managed Kubernetes offerings.
 
 ## Technologies
 
-These choices are largely based on what I know already but with some new pieces in areas I'm less familiar with. The 
-whole point of the experimental clusters is to try out new things and develop it over time. This is just the starting
-point, based on my initial research of what makes sense for this particular setup.
+Running self-hosted Kubernetes is something I've not needed to do in a while, so it's interesting to explore some of the servics I'll need to provide a similar level of functionality that I have available in the cloud, particularly with regard to the Kubernetes distribution, networking and storage.
 
 * **Operating System** - Talos Linux
 * **Kubernetes** - Talos
@@ -56,16 +49,14 @@ I've aquired a trio of HP EliteDesk 800 G4s with 16GB RAM and 256GB, which stack
 
 ## Clusters
 
-A Kubernetes cluster will run at the infrastructure layer. This infrastructure layer will provide storage and virtualisation services that are used by the other clusters. Using Kubernetes allows me to easily manage this layer  like I would with any other cluster - using Infrastructure as Code (IaC), more specifically the GitOps pattern. 
+The physical hardware will run a Kubernetes cluster, providing storage, network and compute services that are used by the other clusters, as well as some other services that would more typically be managed on an "ops cluster", such as centralised logging and metrics. Using Kubernetes allows me to easily manage this infrastucture layer like I would any other cluster -- using Infrastructure as Code (IaC), more specifically the GitOps pattern. 
 
-There needs to be a production cluster that is always running. This will be running HomeAssistant and any other  household and personal services I may want to run, such as PiHole.
-
-Lastly, I need to be able to create any number of experimental clusters for various purposes. These can be ephemeral in nature, but crucially they need to not impact the production cluster. I plan to use QoS to ensure that the production cluster is guaranteed resource and the experimental clusters are the first to be evicted.
+I need to be able to create virtual clusters for various purposes. These can be ephemeral in nature, but crucially they need to not impact the production cluster.
 
 Having the ability to create multiple clusters allows me to:
 * optimise the use of available hardware,
 * create development versions of the production cluster to test changes before deploying them,
-* experiment with clusters in a way that might impact services running on them, without affecting the dependency services and infrastructure.
+* experiment with clusters in a way that might impact services running on them, without affecting the core services and infrastructure.
 
 ## Networking
 
