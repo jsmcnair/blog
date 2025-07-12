@@ -2,6 +2,8 @@
 
 https://blog.turong.dev
 
+based on the [Hextra](https://github.com/imfing/hextra) hugo theme by @imfing
+
 ## Local Development
 
 Pre-requisites: [Hugo](https://gohugo.io/getting-started/installing/), [Go](https://golang.org/doc/install) and [Git](https://git-scm.com)
